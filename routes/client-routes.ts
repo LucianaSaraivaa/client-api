@@ -16,6 +16,16 @@ clientRouter.get("/", (req: Request, res: Response)=>{
     res.status(200).json(clientService.getClients())
 })
 
+clientRouter.delete("/:id", (req: Request, res: Response)=>{
+
+    clientService.deleteClient(parseInt(req.params.id))
+    res.status(200).send("Client deleted")
+})
+
+clientRouter.put("/:id", (req: Request, res: Response)=>{
+    clientService.updateClient({id: parseInt(req.params.id), name: req.body.name, email: req.body.email})
+    res.status(200).send("Client updated")
+})
 
 export default clientRouter
 //More routes
